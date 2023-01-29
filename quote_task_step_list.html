@@ -1,0 +1,24 @@
+{% extends "contracting/base.html" %}
+{% block title %}Quotes{% endblock %}
+{% block content %}
+    <h1>Quotes list </h1>
+    <ul>
+    {% for quote in object_list %}
+        <li>{{ quote.name }}</li>
+        <ul>
+        {% for task in tasks %}
+            {% if task.quote == quote %}
+                <li>{{ task.name }}</li>
+                <ul>
+                {% for step in steps %}
+                    {% if step.task == task %}
+                        <li>{{ step.name }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    </ul>
+{% endblock %}
